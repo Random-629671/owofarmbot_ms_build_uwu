@@ -1,5 +1,5 @@
 global.love = "e<3"; // 💔
-var version = "1.0.7.0";
+var version = "1.0.7.1.2";
 var banversion = "0.1.9";
 //coded by @mid0aria on github
 const os = require("os");
@@ -252,6 +252,8 @@ if (settings.banbypass) {
     global.extrabanc = true;
     console.log(chalk.red(`{/__/}\n( • . •)\n/ > 🥒`));
 }
+
+var shorten = config.settings.shorten_command;
 
 //----------------------------------------------------Check Main Token----------------------------------------------------//
 request.get(
@@ -815,6 +817,11 @@ async function updateerrorsocket(eyl) {
 
 //----------------------------------------------------Main Features----------------------------------------------------//
 function hunt(token, timehunt, tokentype, channelid) {
+
+    var hunt_command;
+    if(shorten) hunt_command = `${prefix}h`
+    else hunt_command = `${prefix}hunt`
+    
     typing(token, channelid);
     request.post(
         {
@@ -824,7 +831,7 @@ function hunt(token, timehunt, tokentype, channelid) {
             url: `https://discord.com/api/v9/channels/${channelid}/messages`,
 
             json: {
-                content: `${prefix} hunt`,
+                content: `${hunt_command}`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -846,6 +853,11 @@ function hunt(token, timehunt, tokentype, channelid) {
 }
 
 function battle(token, timebattle, tokentype, channelid) {
+
+    var battle_command;
+    if(shorten) battle_command = `${prefix}b`
+    else battle_command = `${prefix}battle`
+    
     typing(token, channelid);
     request.post(
         {
@@ -854,7 +866,7 @@ function battle(token, timebattle, tokentype, channelid) {
             },
             url: `https://discord.com/api/v9/channels/${channelid}/messages`,
             json: {
-                content: `${prefix} battle`,
+                content: `${battle_command}`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
