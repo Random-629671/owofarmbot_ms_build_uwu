@@ -93,7 +93,8 @@
                 "enable": false,
                 "amount": "1"
             }
-        }
+        },
+        "shorten_command": true
     },
     "main": {
         "token": "",
