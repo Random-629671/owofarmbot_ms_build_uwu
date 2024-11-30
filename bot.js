@@ -3598,7 +3598,7 @@ function extrabancheck(token, channelid) {
             var bod = JSON.parse(body);
             if (!bod[0]) return;
             var cont;
-            for (let i = 0; i < 5; i++) cont += bod[i].content;
+            for (let i = 0; i < 5; i++) cont += bod[i].content.replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, '');
             if (
                 cont.toLowerCase().includes("captcha") ||
                 cont
@@ -3656,7 +3656,7 @@ function dmbancheck(token, channelid) {
             if (bod[0] == undefined) {
                 dmprotectprouwu(token, channelid, "Main Token");
             } else {
-                var cont = bod[0].content;
+                var cont = bod[0].content.replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, '');
 
                 if (
                     cont.toLowerCase().includes("are you a real human?") ||
@@ -3715,7 +3715,7 @@ function dmextrabancheck(token, channelid) {
             if (bod[0] == undefined) {
                 dmprotectprouwu(token, channelid, "Extra Token");
             } else {
-                var cont = bod[0].content;
+                var cont = bod[0].content.replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, '');
                 if (
                     cont.toLowerCase().includes("are you a real human?") ||
                     cont
