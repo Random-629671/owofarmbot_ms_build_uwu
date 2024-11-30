@@ -3540,7 +3540,7 @@ function bancheck(token, channelid) {
             var bod = JSON.parse(body);
             if (!bod[0]) return;
             var cont;
-            for (let i = 0; i < 5; i++) cont += bod[i].content;
+            for (let i = 0; i < 5; i++) cont += bod[i].content.replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, '');
 
             if (
                 cont.toLowerCase().includes("captcha") ||
